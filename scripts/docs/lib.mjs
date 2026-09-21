@@ -3408,18 +3408,32 @@ export function resolveNpmCli(
 }
 
 export function parseNpmPackFiles(stdout) {
-  let entries;
+  let parsed;
   try {
-    entries = JSON.parse(stdout);
+    parsed = JSON.parse(stdout);
   } catch (error) {
     throw new DocsGateError(
       `npm pack did not return valid JSON: ${error instanceof Error ? error.message : String(error)}`,
     );
   }
-  if (!Array.isArray(entries) || entries.length !== 1 || !Array.isArray(entries[0]?.files)) {
+  // npm <=11 emits an array with one entry; npm >=12 emits a name-keyed object.
+  let entry;
+  if (Array.isArray(parsed)) {
+    if (parsed.length !== 1) {
+      throw new DocsGateError('npm pack JSON must contain exactly one package entry with files[]');
+    }
+    entry = parsed[0];
+  } else if (parsed !== null && typeof parsed === 'object') {
+    const values = Object.values(parsed);
+    if (values.length !== 1) {
+      throw new DocsGateError('npm pack JSON must contain exactly one package entry with files[]');
+    }
+    entry = values[0];
+  }
+  if (!entry || typeof entry !== 'object' || !Array.isArray(entry.files)) {
     throw new DocsGateError('npm pack JSON must contain exactly one package entry with files[]');
   }
-  const files = entries[0].files.map((file, index) => {
+  const files = entry.files.map((file, index) => {
     if (!file || typeof file !== 'object' || typeof file.path !== 'string') {
       throw new DocsGateError(`npm pack files[${String(index)}].path must be a string`);
     }
