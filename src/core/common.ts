@@ -9,6 +9,18 @@ import type { FusionResultDetails, FusionUsage, FusionWorkflowId } from './fusio
 export const TASK_STATUS_VALUES = ['running', 'completed', 'failed', 'killed'] as const;
 export const TERMINAL_TASK_STATUS_VALUES = ['completed', 'failed', 'killed'] as const;
 
+/**
+ * Optional user-level root for durable background-task state.
+ *
+ * When PI_BG_STATE_ROOT is set (non-empty), task output/metadata, delegate
+ * artifacts, and fusion artifacts live under that root instead of the
+ * project cwd, so using background tasks never creates a `.pi` directory
+ * inside the working tree. Unset (default) keeps upstream behavior.
+ */
+export function backgroundTasksStateRoot(): string {
+  return process.env['PI_BG_STATE_ROOT']?.trim() ?? '';
+}
+
 export type TaskStatus = (typeof TASK_STATUS_VALUES)[number];
 export type TerminalTaskStatus = (typeof TERMINAL_TASK_STATUS_VALUES)[number];
 export type KillKind = 'user' | 'timeout' | 'output_cap' | 'shutdown';

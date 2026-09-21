@@ -55,14 +55,14 @@ This generated registry lists production environment-variable references, runtim
 | `AZURE_OPENAI_DEPLOYMENT_NAME_MAP` | remove | `src/core/fusion/pi-child.ts:100` |
 | `AZURE_OPENAI_ENDPOINT` | remove | `src/core/fusion/pi-child.ts:100` |
 | `AZURE_OPENAI_RESOURCE_NAME` | remove | `src/core/fusion/pi-child.ts:100` |
-| `ComSpec` | read | `src/core/common.ts:1047`<br>`src/core/common.ts:1065` |
+| `ComSpec` | read | `src/core/common.ts:1059`<br>`src/core/common.ts:1077` |
 | `OPENAI_API_KEY` | remove | `src/core/attested-pi-run.ts:248`<br>`src/core/fusion/pi-child.ts:100` |
 | `OPENAI_BASE_URL` | remove | `src/core/attested-pi-run.ts:248`<br>`src/core/fusion/pi-child.ts:100` |
 | `OPENROUTER_API_KEY` | remove | `src/core/attested-pi-run.ts:248`<br>`src/core/fusion/pi-child.ts:100` |
 | `OPENROUTER_BASE_URL` | remove | `src/core/attested-pi-run.ts:248`<br>`src/core/fusion/pi-child.ts:100` |
-| `path` | read | `src/core/common.ts:963` |
-| `Path` | read | `src/core/common.ts:963` |
-| `PATH` | read | `src/core/common.ts:1017`<br>`src/core/common.ts:963`<br>`src/core/pi-launch.ts:425` |
+| `path` | read | `src/core/common.ts:975` |
+| `Path` | read | `src/core/common.ts:975` |
+| `PATH` | read | `src/core/common.ts:1029`<br>`src/core/common.ts:975`<br>`src/core/pi-launch.ts:425` |
 | `PI_ANTHROPIC_ACCOUNT_CONFIG_PATH` | read | `src/core/anthropic-attribution.ts:896` |
 | `PI_API_BASE_URL` | remove | `src/core/attested-pi-run.ts:248`<br>`src/core/fusion/pi-child.ts:100` |
 | `PI_API_KEY` | remove | `src/core/attested-pi-run.ts:248`<br>`src/core/fusion/pi-child.ts:100` |
@@ -72,16 +72,17 @@ This generated registry lists production environment-variable references, runtim
 | `PI_BG_DELEGATE_SEED_PATH` | read, write | `src/core/delegate/launch.ts:354`<br>`src/delegate-child-extension.ts:385` |
 | `PI_BG_DELEGATE_SEED_SHA256` | read, write | `src/core/delegate/launch.ts:355`<br>`src/delegate-child-extension.ts:386` |
 | `PI_BG_DELEGATE_TASK_ID` | read, write | `src/core/delegate/launch.ts:356`<br>`src/delegate-child-extension.ts:387` |
-| `PI_BG_DISABLE_PI_TELEMETRY` | read | `src/core/registry.ts:271` |
+| `PI_BG_DISABLE_PI_TELEMETRY` | read | `src/core/registry.ts:272` |
 | `PI_BG_DISABLE_UPDATE_CHECK` | read | `src/extension.ts:656` |
 | `PI_BG_DOCK_SHORTCUT` | read | `src/core/config.ts:113` |
 | `PI_BG_FEATURES` | read | `src/core/config.ts:112` |
-| `PI_BG_MAX_OUTPUT_BYTES` | read | `src/core/registry.ts:78` |
-| `PI_BG_POSIX_SHELL` | read | `src/core/common.ts:1085` |
-| `PI_BG_POSIX_SHELL_PATH` | read | `src/core/common.ts:1095` |
+| `PI_BG_MAX_OUTPUT_BYTES` | read | `src/core/registry.ts:79` |
+| `PI_BG_POSIX_SHELL` | read | `src/core/common.ts:1097` |
+| `PI_BG_POSIX_SHELL_PATH` | read | `src/core/common.ts:1107` |
 | `PI_BG_REGISTRY_URL` | read | `src/extension.ts:665` |
-| `PI_BG_SHELL` | read | `src/core/common.ts:1042` |
-| `PI_BG_SHELL_PATH` | read | `src/core/common.ts:1043` |
+| `PI_BG_SHELL` | read | `src/core/common.ts:1054` |
+| `PI_BG_SHELL_PATH` | read | `src/core/common.ts:1055` |
+| `PI_BG_STATE_ROOT` | read | `src/core/common.ts:21` |
 | `PI_CACHE_RETENTION` | read, write | `src/core/anthropic-attribution.ts:661`<br>`src/core/anthropic-attribution.ts:672`<br>`src/core/fusion/claude-cache.ts:57`<br>`src/core/fusion/pi-child.ts:273`<br>`src/core/fusion/pi-child.ts:274` |
 | `PI_FUSION_CANDIDATE_OUTPUT_RECOVERY_PATH` | read, remove, write | `src/core/fusion/pi-child.ts:100`<br>`src/core/fusion/pi-child.ts:1879`<br>`src/fusion-child-extension.ts:599` |
 | `PI_FUSION_RESEARCH_ENABLED` | read, remove, write | `src/core/fusion/pi-child.ts:100`<br>`src/core/fusion/pi-child.ts:1902`<br>`src/fusion-child-extension.ts:608` |
@@ -96,7 +97,7 @@ This generated registry lists production environment-variable references, runtim
 | `PI_SESSION_ID` | remove | `src/core/delegate/launch.ts:330`<br>`src/core/fusion/pi-child.ts:100` |
 | `PI_SKIP_VERSION_CHECK` | write | `src/core/delegate/launch.ts:352`<br>`src/core/fusion/pi-child.ts:272` |
 | `PIPELINE_ANTHROPIC_ATTRIBUTION_AUDIT_PATH` | read | `src/core/anthropic-attribution.ts:1173` |
-| `SHELL` | read | `src/core/common.ts:1102` |
+| `SHELL` | read | `src/core/common.ts:1114` |
 | `SystemRoot` | read | `src/core/windows-taskkill.ts:96` |
 | `WINDIR` | read | `src/core/windows-taskkill.ts:101` |
 
@@ -114,31 +115,31 @@ This generated registry lists production environment-variable references, runtim
 | delegate-artifact | `result.json` | `src/core/delegate/result-package.ts:28` |
 | delegate-artifact | `seed.json` | `src/core/delegate/artifacts.ts:42` |
 | delegate-artifact | `spill/<receipt-named-file>` | `src/core/delegate/artifacts.ts:54` |
-| directory | `.pi/delegate/<session-id>-<pid>/<task-id>/` | `src/core/delegate/artifacts.ts:161` |
-| directory | `.pi/fusion/<session-id>-<pid>/<run-id>/` | `src/core/fusion/artifacts.ts:568` |
-| directory | `.pi/tasks/<session-id>-<pid>/` | `src/core/registry.ts:1266` |
+| directory | `.pi/delegate/<session-id>-<pid>/<task-id>/` | `src/core/delegate/artifacts.ts:164` |
+| directory | `.pi/fusion/<session-id>-<pid>/<run-id>/` | `src/core/fusion/artifacts.ts:571` |
+| directory | `.pi/tasks/<session-id>-<pid>/` | `src/core/registry.ts:1270` |
 | fusion-artifact | `<attempt-prefix> = candidate-<slot>.attempt-<n> \| evaluation.attempt-<n> \| merge.attempt-<n>` | `src/core/fusion/artifacts.ts:248` |
 | fusion-artifact | `<attempt-prefix>.calibration-violation.json` | `src/core/fusion/artifacts.ts:263` |
-| fusion-artifact | `<attempt-prefix>.events.jsonl` | `src/core/fusion/artifacts.ts:805` |
-| fusion-artifact | `<attempt-prefix>.prompt.txt` | `src/core/fusion/artifacts.ts:804` |
-| fusion-artifact | `<attempt-prefix>.stderr.txt` | `src/core/fusion/artifacts.ts:806` |
-| fusion-artifact | `blind-candidates.json` | `src/core/fusion/artifacts.ts:713` |
-| fusion-artifact | `budget-plan.json` | `src/core/fusion/artifacts.ts:709` |
+| fusion-artifact | `<attempt-prefix>.events.jsonl` | `src/core/fusion/artifacts.ts:810` |
+| fusion-artifact | `<attempt-prefix>.prompt.txt` | `src/core/fusion/artifacts.ts:809` |
+| fusion-artifact | `<attempt-prefix>.stderr.txt` | `src/core/fusion/artifacts.ts:811` |
+| fusion-artifact | `blind-candidates.json` | `src/core/fusion/artifacts.ts:718` |
+| fusion-artifact | `budget-plan.json` | `src/core/fusion/artifacts.ts:714` |
 | fusion-artifact | `candidate-<slot>.attempt-<n>.response.md \| candidate-<slot>.attempt-<n>.response.partial.md` | `src/core/fusion/artifacts.ts:258` |
-| fusion-artifact | `candidate-<slot>.attempt-<n>.tool-calls.jsonl` | `src/core/fusion/artifacts.ts:628` |
+| fusion-artifact | `candidate-<slot>.attempt-<n>.tool-calls.jsonl` | `src/core/fusion/artifacts.ts:633` |
 | fusion-artifact | `candidate-<slot>.attempt-<n>.tool-calls.jsonl.seal.json` | `src/core/fusion/child-protocol.ts:22` |
-| fusion-artifact | `canonical-input.json` | `src/core/fusion/artifacts.ts:679` |
-| fusion-artifact | `context-omission-ledger.json` | `src/core/fusion/artifacts.ts:688` |
-| fusion-artifact | `error.json` | `src/core/fusion/artifacts.ts:738` |
+| fusion-artifact | `canonical-input.json` | `src/core/fusion/artifacts.ts:684` |
+| fusion-artifact | `context-omission-ledger.json` | `src/core/fusion/artifacts.ts:693` |
+| fusion-artifact | `error.json` | `src/core/fusion/artifacts.ts:743` |
 | fusion-artifact | `evaluation.attempt-<n>.response.txt \| evaluation.attempt-<n>.response.partial.txt` | `src/core/fusion/artifacts.ts:258` |
 | fusion-artifact | `evaluation.json` | `src/core/fusion/artifacts.ts:383` |
 | fusion-artifact | `merge.attempt-<n>.response.md \| merge.attempt-<n>.response.partial.md` | `src/core/fusion/artifacts.ts:258` |
 | fusion-artifact | `merged.md` | `src/core/fusion/artifacts.ts:387` |
-| fusion-artifact | `result.json` | `src/core/fusion/artifacts.ts:652` |
-| fusion-artifact | `source-policy.private.json` | `src/core/fusion/artifacts.ts:695` |
+| fusion-artifact | `result.json` | `src/core/fusion/artifacts.ts:657` |
+| fusion-artifact | `source-policy.private.json` | `src/core/fusion/artifacts.ts:700` |
 | task-file | `.pi/tasks/<session-id>-<pid>/<task-id>.attestation.json` | `src/core/attested-pi-run.ts:979` |
-| task-file | `.pi/tasks/<session-id>-<pid>/<task-id>.json` | `src/core/registry.ts:1456` |
-| task-file | `.pi/tasks/<session-id>-<pid>/<task-id>.output` | `src/core/registry.ts:1455` |
+| task-file | `.pi/tasks/<session-id>-<pid>/<task-id>.json` | `src/core/registry.ts:1462` |
+| task-file | `.pi/tasks/<session-id>-<pid>/<task-id>.output` | `src/core/registry.ts:1461` |
 | task-file | `.pi/tasks/<session-id>-<pid>/<task-id>.pi-events.jsonl` | `src/core/attested-pi-run.ts:976` |
 | task-file | `.pi/tasks/<session-id>-<pid>/<task-id>.pi-telemetry-wrapper.cjs` | `src/core/attested-pi-run.ts:978` |
 | task-file | `.pi/tasks/<session-id>-<pid>/<task-id>.stderr` | `src/core/attested-pi-run.ts:977` |

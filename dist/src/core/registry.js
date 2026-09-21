@@ -4,7 +4,7 @@ import { createWriteStream, existsSync } from 'node:fs';
 import { mkdir, realpath, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { formatSize } from '@earendil-works/pi-coding-agent';
-import { boundedRead, deriveTaskNameFromCommand, escapeXml, formatAgentActivityLine, formatDuration, isJsonObject, normalizeTaskName, parseAgentActivity, parseJsonText, rejectSurvivalForTaskKind, resolveShellPolicy, sanitizePathSegment, shellInvocationForPolicy, shellPolicySnapshot, shellQuote, snapshot, taskDisplayName, ReloadSurvivalError, } from './common.js';
+import { backgroundTasksStateRoot, boundedRead, deriveTaskNameFromCommand, escapeXml, formatAgentActivityLine, formatDuration, isJsonObject, normalizeTaskName, parseAgentActivity, parseJsonText, rejectSurvivalForTaskKind, resolveShellPolicy, sanitizePathSegment, shellInvocationForPolicy, shellPolicySnapshot, shellQuote, snapshot, taskDisplayName, ReloadSurvivalError, } from './common.js';
 import { ATTESTED_GIT_KILL_GRACE_MS, ATTESTED_GIT_MAX_OUTPUT_BYTES, ATTESTED_TASK_ID_PATTERN, } from './attested-pi-contract.js';
 import { closeAndFsyncOutputStream, writeFileFsynced, writeJsonAtomic } from './task-durable.js';
 import { assertWindowsCommandLineWithinLimit, piLaunchArgv, resolvePiLaunch, } from './pi-launch.js';
@@ -914,8 +914,13 @@ export class BackgroundTaskRegistry {
             return this.runtimeDir;
         const sessionId = sanitizePathSegment(ctx.sessionId ?? `session-${String(process.pid)}`);
         const runId = `${sessionId}-${String(process.pid)}`;
-        const runtimeDirAbs = join(ctx.cwd, '.pi', 'tasks', runId);
-        const runtimeDirDisplay = join('.pi', 'tasks', runId);
+        const stateRoot = backgroundTasksStateRoot();
+        const runtimeDirAbs = stateRoot
+            ? join(stateRoot, 'tasks', runId)
+            : join(ctx.cwd, '.pi', 'tasks', runId);
+        const runtimeDirDisplay = stateRoot
+            ? runtimeDirAbs
+            : join('.pi', 'tasks', runId);
         await mkdir(runtimeDirAbs, { recursive: true });
         this.runtimeDir = { abs: runtimeDirAbs, display: runtimeDirDisplay };
         return this.runtimeDir;

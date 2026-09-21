@@ -4,6 +4,17 @@ import { basename, delimiter, extname, isAbsolute, join, resolve, win32 } from '
 import { DEFAULT_MAX_BYTES } from '@earendil-works/pi-coding-agent';
 export const TASK_STATUS_VALUES = ['running', 'completed', 'failed', 'killed'];
 export const TERMINAL_TASK_STATUS_VALUES = ['completed', 'failed', 'killed'];
+/**
+ * Optional user-level root for durable background-task state.
+ *
+ * When PI_BG_STATE_ROOT is set (non-empty), task output/metadata, delegate
+ * artifacts, and fusion artifacts live under that root instead of the
+ * project cwd, so using background tasks never creates a `.pi` directory
+ * inside the working tree. Unset (default) keeps upstream behavior.
+ */
+export function backgroundTasksStateRoot() {
+    return process.env['PI_BG_STATE_ROOT']?.trim() ?? '';
+}
 export class ReloadSurvivalError extends Error {
     code;
     constructor(code, message) {

@@ -7,6 +7,7 @@ import type { Api, Model } from '@earendil-works/pi-ai';
 import type { ExtensionContext } from '@earendil-works/pi-coding-agent';
 import { formatSize } from '@earendil-works/pi-coding-agent';
 import {
+  backgroundTasksStateRoot,
   boundedRead,
   deriveTaskNameFromCommand,
   escapeXml,
@@ -1263,8 +1264,13 @@ export class BackgroundTaskRegistry {
     if (this.runtimeDir) return this.runtimeDir;
     const sessionId = sanitizePathSegment(ctx.sessionId ?? `session-${String(process.pid)}`);
     const runId = `${sessionId}-${String(process.pid)}`;
-    const runtimeDirAbs = join(ctx.cwd, '.pi', 'tasks', runId);
-    const runtimeDirDisplay = join('.pi', 'tasks', runId);
+    const stateRoot = backgroundTasksStateRoot();
+    const runtimeDirAbs = stateRoot
+      ? join(stateRoot, 'tasks', runId)
+      : join(ctx.cwd, '.pi', 'tasks', runId);
+    const runtimeDirDisplay = stateRoot
+      ? runtimeDirAbs
+      : join('.pi', 'tasks', runId);
     await mkdir(runtimeDirAbs, { recursive: true });
     this.runtimeDir = { abs: runtimeDirAbs, display: runtimeDirDisplay };
     return this.runtimeDir;
